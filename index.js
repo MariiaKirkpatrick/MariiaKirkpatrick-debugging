@@ -43,19 +43,20 @@ function checkGuess() {
     if (guess < targetNumber) {
       tooLowMessage.style.display = '';
     } else {
-      tooLowMessage.style.display = '';
+      tooHighMessage.style.display = '';
     }
-
+//DEBUGGING: when the guess is higher then the target number show tooHighMessage (here was tooLowMessage)
     const remainingAttempts = maxNumberOfAttempts - attempts;
 
     numberOfGuessesMessage.style.display = '';
     numberOfGuessesMessage.innerHTML = `You guessed ${guess}. <br> ${remainingAttempts} guesses remaining`;
   }
 
-  if (attempts ==== maxNumberOfAttempts) {
+  if (attempts === maxNumberOfAttempts) {
     submitButton.disabled = true;
     guessInput.disabled = true;
   }
+//DEBUGGING: Replaced ==== with ===
 
   guessInput.value = '';
 
@@ -63,22 +64,26 @@ function checkGuess() {
 }
 
 function hideAllMessages() {
-  for (let elementIndex = 0; elementIndex <= messages.length; elementIndex++) {
+  for (let elementIndex = 0; elementIndex < messages.length; elementIndex++) {
     messages[elementIndex].style.display = 'none';
   }
 }
+//DEBUGGING: elementIndex <= messages.length with elementIndex < messages.length
 
-funtion setup() {
+function setup() {
   // Get random number
   targetNumber = getRandomNumber(1, 100);
   console.log(`target number: ${targetNumber}`);
+  //DEBUGGING: replaced funtion with function
 
   // Reset number of attempts
-  maxNumberOfAttempts = 0;
+  attempts = 0;
+  //DEBUGGING: maxNumberOfAttempts = 5 but attempts should be 0, so we can reset them;
 
   // Enable the input and submit button
-  submitButton.disabeld = false;
+  submitButton.disabled = false;
   guessInput.disabled = false;
+  //DEBUGGING: typo: disabeld instead of disabled
 
   hideAllMessages();
   resetButton.style.display = 'none';
